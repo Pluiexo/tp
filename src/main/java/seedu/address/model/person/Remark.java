@@ -7,9 +7,13 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Remark {
-    public final String value;
     public static final String EMPTY_REMARK = "Remark can't b e empty";
+    public final String value;
 
+    /**
+     * Creates a remark that is tagged to a Person class.
+     * @param remark The remark to add
+     */
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;

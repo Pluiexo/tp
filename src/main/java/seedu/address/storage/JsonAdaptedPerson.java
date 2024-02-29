@@ -36,9 +36,12 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("remark") String remark) {
+    public JsonAdaptedPerson(
+        @JsonProperty("name") String name,
+        @JsonProperty("phone") String phone,
+        @JsonProperty("email") String email,
+        @JsonProperty("address") String address,
+        @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("remark") String remark) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -57,9 +60,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        tags.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
 
         remark = source.getRemark().value;
     }
@@ -109,11 +110,11 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if(remark == null) {
+        if (remark == null) {
             throw new IllegalValueException(Remark.EMPTY_REMARK);
         }
         final Remark modelRemark = new Remark(remark);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,modelRemark);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark);
     }
 
 }
